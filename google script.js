@@ -1,4 +1,4 @@
-const POST_URL = "WEBBHOOK URL";
+const POST_URL = "WEBHOOK_URL";
 
 function onSubmit(e) {
     const response = e.response.getItemResponses();
@@ -41,15 +41,18 @@ function onSubmit(e) {
         "headers": {
             "Content-Type": "application/json",
         },
+        //TTS disabled, and date of post added to footer
         "payload": JSON.stringify({
             "content": "‌",
+            "tts": false,
             "embeds": [{
-                "title": "Some nice title here",
-                "color": 33023, // This is optional, you can look for decimal colour codes at https://www.webtoolkitonline.com/hexadecimal-decimal-color-converter.html
+                "type": "rich",
+                "title": "Title",
+                "color": 0xFFD200, // Use "0x" before the hex number so the API can convert to decimal RGB 
                 "fields": items,
                 "footer": {
-                    "text": "Some footer here"
-                },
+                     "text": `Submitted on ` + new Date().toISOString()
+                  },
                 "timestamp": new Date().toISOString()
             }]
         })
